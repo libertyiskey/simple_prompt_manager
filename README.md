@@ -66,14 +66,12 @@ The application provides a RESTful API with the following endpoints:
 ```
 prompt_manager/
 ├── backend/
-│   └── src/
-│       ├── __init__.py
-│       ├── api.py           # FastAPI endpoints
-│       └── prompt_manager_core.py  # Core functionality
+│   ├── __init__.py
+│   ├── api.py           # FastAPI endpoints
+│   └── prompt_manager_core.py  # Core functionality
 ├── frontend/
-│   └── src/
-│       ├── __init__.py
-│       └── prompt_manager.py       # Streamlit interface
+│   ├── __init__.py
+│   └── prompt_manager.py       # Streamlit interface
 └── tests/
     ├── __init__.py
     ├── test_api.py         # API tests
@@ -111,7 +109,7 @@ pip install -r requirements.txt
 
 1. Start the application:
 ```bash
-streamlit run frontend/src/prompt_manager.py
+streamlit run frontend/prompt_manager.py
 ```
 
 2. The interface will open in your default web browser.
@@ -129,19 +127,19 @@ The project includes three test suites: core functionality, API, and UI tests. T
 
 Run all tests:
 ```bash
-PYTHONPATH=$PYTHONPATH:backend/src python3 -m unittest discover tests
+PYTHONPATH=$PYTHONPATH:backend python3 -m unittest discover tests
 ```
 
 Run specific test suites:
 ```bash
 # Core functionality tests
-PYTHONPATH=$PYTHONPATH:backend/src python3 -m unittest -v tests/test_prompt_manager.py
+PYTHONPATH=$PYTHONPATH:backend python3 -m unittest -v tests/test_prompt_manager.py
 
 # API tests
-PYTHONPATH=$PYTHONPATH:backend/src python3 -m unittest -v tests/test_api.py
+PYTHONPATH=$PYTHONPATH:backend python3 -m unittest -v tests/test_api.py
 
 # UI tests
-PYTHONPATH=$PYTHONPATH:backend/src python3 -m unittest -v tests/test_prompt_manager_ui.py
+PYTHONPATH=$PYTHONPATH:backend python3 -m unittest -v tests/test_prompt_manager_ui.py
 ```
 
 Note: When running UI tests, you may see warnings about "missing ScriptRunContext". These warnings can be safely ignored when running in test mode.
