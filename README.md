@@ -68,13 +68,15 @@ prompt_manager/
 ├── backend/
 │   └── src/
 │       ├── __init__.py
-│       └── prompt_manager_core.py  # Database and logic
+│       ├── api.py           # FastAPI endpoints
+│       └── prompt_manager_core.py  # Core functionality
 ├── frontend/
 │   └── src/
 │       ├── __init__.py
 │       └── prompt_manager.py       # Streamlit interface
 └── tests/
     ├── __init__.py
+    ├── test_api.py         # API tests
     ├── test_prompt_manager.py      # Core tests
     └── test_prompt_manager_ui.py   # Interface tests
 ```
@@ -178,43 +180,6 @@ Test Coverage:
 3. Commit your changes
 4. Push to the branch
 5. Create a Pull Request
-
-## Releasing
-
-To create a new release version:
-
-1. Update version numbers:
-   - In `backend/src/api.py` (API version)
-   - In `requirements.txt` (if dependencies changed)
-   - In package metadata (if applicable)
-
-2. Run all tests to ensure everything works:
-   ```bash
-   PYTHONPATH=$PYTHONPATH:backend/src python3 -m unittest discover tests
-   ```
-
-3. Create a release tag:
-   ```bash
-   git add .
-   git commit -m "Prepare for release vX.Y.Z"
-   git tag -a vX.Y.Z -m "Version X.Y.Z"
-   git push origin main --tags
-   ```
-
-4. Create a release on GitHub:
-   - Go to "Releases" on GitHub
-   - Click "Create a new release"
-   - Select the tag you just created
-   - Add release notes detailing:
-     - New features
-     - Bug fixes
-     - Breaking changes
-     - Upgrade instructions
-
-5. Version numbering follows [Semantic Versioning](https://semver.org/):
-   - MAJOR version for incompatible API changes
-   - MINOR version for new functionality in a backward compatible manner
-   - PATCH version for backward compatible bug fixes
 
 ## License
 
