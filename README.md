@@ -182,4 +182,27 @@ Test Coverage:
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Docker Installation
+
+You can run the application using Docker:
+
+```bash
+# Build and start the container
+docker-compose up --build
+
+# Or run in detached mode
+docker-compose up -d
+```
+
+The services will be available at:
+- Streamlit UI: http://localhost:8501
+- FastAPI: http://localhost:8000
+
+The SQLite database (`prompts.db`) will be persisted in the project root directory.
+
+To stop the services:
+```bash
+docker-compose down
+``` 

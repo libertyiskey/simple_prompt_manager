@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  prompt-manager:
+    build: .
+    ports:
+      - "8000:8000"  # FastAPI
+      - "8501:8501"  # Streamlit
+    volumes:
+      - ./prompts.db:/app/prompts.db  # Mount database file directly
+    environment:
+      - PYTHONPATH=/app 
