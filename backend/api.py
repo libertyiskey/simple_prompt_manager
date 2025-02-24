@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Query
 from typing import List, Optional, Dict, Any
 from pydantic import BaseModel
-from prompt_manager_core import PromptManager
+from backend.prompt_manager_core import PromptManager
 from datetime import datetime
 import sqlite3
 import os

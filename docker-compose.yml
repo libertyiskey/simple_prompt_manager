@@ -9,4 +9,5 @@ services:
     volumes:
       - ./prompts.db:/app/prompts.db  # Mount database file directly
     environment:
-      - PYTHONPATH=/app 
+      - PYTHONPATH=/app
+    working_dir: /app

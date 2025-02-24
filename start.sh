@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Set Python path to include the app directory
+export PYTHONPATH=/app
+
 # Start FastAPI in the background
 uvicorn backend.api:app --host 0.0.0.0 --port 8000 &
 
