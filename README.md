@@ -109,6 +109,7 @@ pip install -r requirements.txt
 
 1. Start the application:
 ```bash
+# From the project root directory
 streamlit run frontend/prompt_manager.py
 ```
 

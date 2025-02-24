@@ -3,7 +3,7 @@ import os
 import sys
 
 # Add the backend directory to the Python path
-sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "backend/src"))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(__file__)), "backend"))
 from prompt_manager_core import PromptManager
 from datetime import datetime
 import sqlite3
@@ -32,6 +32,10 @@ if 'selected_prompt_id' not in st.session_state:
     st.session_state['selected_prompt_id'] = None
 if 'view_mode' not in st.session_state:
     st.session_state['view_mode'] = "list"  # can be "list" or "single"
+if 'show_success' not in st.session_state:
+    st.session_state['show_success'] = False
+if 'success_message' not in st.session_state:
+    st.session_state['success_message'] = ""
 
 # Sidebar navigation
 st.sidebar.title("Navigation")
@@ -106,6 +110,12 @@ choice = st.session_state['navigation']
 if choice == "Add Prompt":
     st.subheader("Add a New Prompt")
     
+    # Show success message if it exists
+    if st.session_state['show_success']:
+        st.success(st.session_state['success_message'])
+        st.session_state['show_success'] = False
+        st.session_state['success_message'] = ""
+    
     # Replace expandable with simple info message
     st.info("💡 You can reference other prompts in your content using `{{prompt_id}}` or `{{prompt_title}}`.\nFor example: `{{1}}` or `{{My Prompt Title}}`")
     
@@ -127,8 +137,12 @@ if choice == "Add Prompt":
     if st.button("Add Prompt"):
         if title.strip() and content.strip():
             try:
-                pm.add_prompt(title.strip(), content.strip(), selected_folder)
-                st.success("Prompt added successfully!")
+                prompt_id = pm.add_prompt(title.strip(), content.strip(), selected_folder)
+                st.session_state['success_message'] = "Prompt added successfully!"
+                st.session_state['show_success'] = True
+                st.session_state['navigation'] = "Manage Prompts"
+                st.session_state['selected_prompt_id'] = prompt_id
+                st.session_state['view_mode'] = "single"
                 st.rerun()
             except sqlite3.Error as e:
                 st.error(str(e))

@@ -13,7 +13,7 @@ class TestPromptManagerUI(unittest.TestCase):
         # Use a test database
         self.test_db = "test_prompts.db"
         # Initialize the app test client
-        self.at = AppTest.from_file("frontend/src/prompt_manager.py")
+        self.at = AppTest.from_file("frontend/prompt_manager.py")
         
     def tearDown(self):
         """Clean up test environment after each test."""
